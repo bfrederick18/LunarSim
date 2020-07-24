@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SourceFileCollection xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Profile>Reach</Profile>
+  <Platform>Windows</Platform>
+  <Config />
+  <SourceFiles>
+    <File>C:/Users/Brandon/Documents/Github/LunarSim/LunarSim/Content/Textures/topDownPerson_v1_1.png</File>
+    <File>C:/Users/Brandon/Documents/Github/LunarSim/LunarSim/Content/Textures/topDownPerson_v1_2.png</File>
+    <File>C:/Users/Brandon/Documents/Github/LunarSim/LunarSim/Content/Textures/topDownPerson_v2_0.png</File>
+    <File>C:/Users/Brandon/Documents/Github/LunarSim/LunarSim/Content/Textures/white2By2.png</File>
+    <File>C:/Users/Brandon/Documents/Github/LunarSim/LunarSim/Content/Textures/white3By3.png</File>
+  </SourceFiles>
+  <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+  </DestFiles>
+</SourceFileCollection>
