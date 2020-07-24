@@ -13,6 +13,7 @@ namespace LunarSim
     {
         private bool debug = false;
 
+        #region protected
         protected Texture2D texture;
         protected Vector2 position;
         protected Rectangle sourceRectangle;
@@ -27,6 +28,7 @@ namespace LunarSim
         protected Rectangle bottomHitBox;
         protected Rectangle leftHitBox;
         protected Rectangle rightHitBox;
+        #endregion
 
         public float transparency;
 
