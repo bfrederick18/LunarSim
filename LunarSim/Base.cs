@@ -10,7 +10,7 @@ namespace LunarSim
 {
     public class Base
     {
-        RoomNode head
+        public RoomNode head
         {
             get;
             set;
@@ -21,14 +21,14 @@ namespace LunarSim
             private set;
         }
 
-        public Base(BaseSprite sprite, float innerRadii)
+        public Base(BaseSprite sprite)
         {
             RoomNode[] tempRoomArray = new RoomNode[12];
-            head = new RoomNode(sprite, innerRadii, tempRoomArray);
+            head = new RoomNode(sprite, tempRoomArray);
             count = 1;
         }
 
-        public void AddAfter(BaseSprite sprite, float innerRadii, Queue<int> index)
+        public void AddRoomAfter(BaseSprite sprite, Queue<int> index)
         {
             RoomNode tempNode = head;
             while (index.Count > 1)
@@ -42,7 +42,7 @@ namespace LunarSim
             RoomNode[] tempRoomArray = new RoomNode[12];
             tempRoomArray[indexSuppliment] = tempNode;
 
-            RoomNode newNode = new RoomNode(sprite, innerRadii, tempRoomArray);
+            RoomNode newNode = new RoomNode(sprite, tempRoomArray);
             tempNode.adjRooms[index.Peek()] = newNode;
 
             count++;

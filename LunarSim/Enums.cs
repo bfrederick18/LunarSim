@@ -12,4 +12,11 @@ namespace LunarSim
         Simulation, 
         MapCreator 
     }
+
+    public enum LunarianState
+    {
+        Idle,
+        Wandering,
+        Walking
+    }
 }

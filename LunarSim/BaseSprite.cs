@@ -14,20 +14,16 @@ namespace LunarSim
         private bool debug = false;
 
         #region protected
-        protected Texture2D texture;
-        protected Vector2 position;
+        public Texture2D texture;
+        public Vector2 position;
         protected Rectangle sourceRectangle;
         protected Color tint;
         protected float rotation;
-        protected Vector2 scale;
+        public Vector2 scale;
         protected float layerDepth;
         protected Vector2 origin;
         protected SpriteEffects effects;
         protected Rectangle hitBox;
-        protected Rectangle topHitBox;
-        protected Rectangle bottomHitBox;
-        protected Rectangle leftHitBox;
-        protected Rectangle rightHitBox;
         #endregion
 
         public float transparency;

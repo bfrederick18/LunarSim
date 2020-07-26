@@ -15,7 +15,12 @@ namespace LunarSim
             get;
             set;
         }
-        public float innerRadii
+        public float innerRadius
+        {
+            get;
+            set;
+        }
+        public Vector2 outerRadius
         {
             get;
             set;
@@ -26,10 +31,11 @@ namespace LunarSim
             set;
         }
 
-        public RoomNode(BaseSprite sprite, float innerRadii, RoomNode[] adjRooms = null)
+        public RoomNode(BaseSprite sprite, RoomNode[] adjRooms = null)
         {
             this.sprite = sprite;
-            this.innerRadii = innerRadii;
+            innerRadius = sprite.texture.Width * sprite.scale.X > sprite.texture.Height * sprite.scale.Y ? sprite.texture.Height * sprite.scale.Y / 4 : sprite.texture.Width * sprite.scale.X / 4;
+            outerRadius = new Vector2(sprite.texture.Width * sprite.scale.X / 2, sprite.texture.Height * sprite.scale.Y / 2);
             this.adjRooms = adjRooms;
         }
 

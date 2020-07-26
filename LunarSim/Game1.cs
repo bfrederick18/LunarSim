@@ -17,7 +17,7 @@ namespace LunarSim
         Vector2 centerScreen;
 
         BaseSprite middlePx;
-        MovingSprite testPerson;
+        Lunarian testLunarian;
         BaseSprite circularRoom;
 
         KeyboardState ks;
@@ -52,19 +52,21 @@ namespace LunarSim
             centerScreen = new Vector2(GraphicsDevice.Viewport.Width / 2, GraphicsDevice.Viewport.Height / 2);
 
             middlePx = new BaseSprite(pixel, centerScreen, Color.Green, Vector2.One);
-            testPerson = new MovingSprite(Content.Load<Texture2D>("Textures/topDownPerson_v2_0"), centerScreen, new Vector2(0.8f, 0.8f), Vector2.Zero);
-            circularRoom = new BaseSprite(Content.Load<Texture2D>("Textures/circularBase_v1_4"), centerScreen, Color.White, Vector2.One);
+            
+            circularRoom = new BaseSprite(Content.Load<Texture2D>("Textures/circularBase_v1_4"), centerScreen, Color.White, new Vector2(2f, 2f));
 
-            aBase = new Base(circularRoom, 1.0f);
+            aBase = new Base(circularRoom);
 
             /*Queue<int> aQueue = new Queue<int>();
             aQueue.Enqueue(1);
-            aBase.AddAfter(middlePx, 2.0f, aQueue);
+            aBase.AddRoomAfter(middlePx, aQueue);
             aQueue.Enqueue(3);
-            aBase.AddAfter(middlePx, 3.0f, aQueue);
+            aBase.AddRoomAfter(middlePx, aQueue);
             aQueue.Clear();
             aQueue.Enqueue(6);
-            aBase.AddAfter(middlePx, 4.0f, aQueue);*/
+            aBase.AddRoomAfter(middlePx, aQueue);*/
+
+            testLunarian = new Lunarian(Content.Load<Texture2D>("Textures/topDownPerson_v2_0"), aBase, aBase.head);
         }
 
         protected override void UnloadContent()
@@ -94,7 +96,7 @@ namespace LunarSim
                 {
                     currState = GameState.MainMenu;
                 }
-                testPerson.Update(gameTime, GraphicsDevice.Viewport);
+                testLunarian.Update(gameTime, GraphicsDevice.Viewport);
 
                 if (ks.IsKeyDown(Keys.A) && prevKs.IsKeyUp(Keys.A))
                 {
@@ -123,7 +125,7 @@ namespace LunarSim
                 //middlePx.Draw(spriteBatch);
                 circularRoom.Draw(spriteBatch);
 
-                testPerson.Draw(spriteBatch);
+                testLunarian.Draw(spriteBatch);
 
                 aBase.Draw(spriteBatch);
             }
