@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace LunarSim
 {
-    public class Room
-    {
+    public enum GameState 
+    { 
+        MainMenu, 
+        Simulation, 
+        MapCreator 
     }
 }
