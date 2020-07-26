@@ -26,6 +26,7 @@ namespace LunarSim
         GameState currState = GameState.Simulation;
 
         Base aBase;
+        Lunarian[] lunarians;
 
         public Game1()
         {
@@ -53,20 +54,29 @@ namespace LunarSim
 
             middlePx = new BaseSprite(pixel, centerScreen, Color.Green, Vector2.One);
             
-            circularRoom = new BaseSprite(Content.Load<Texture2D>("Textures/circularBase_v1_4"), centerScreen, Color.White, new Vector2(2f, 2f));
+            circularRoom = new BaseSprite(Content.Load<Texture2D>("Textures/circularBase_v1_4"), centerScreen, Color.White, new Vector2(1f, 1f));
 
             aBase = new Base(circularRoom);
 
-            /*Queue<int> aQueue = new Queue<int>();
-            aQueue.Enqueue(1);
-            aBase.AddRoomAfter(middlePx, aQueue);
-            aQueue.Enqueue(3);
+            Queue<int> aQueue = new Queue<int>();
+            aQueue.Enqueue(6);
+            aBase.AddRoomAfter(circularRoom, aQueue);
+            /*aQueue.Enqueue(3);
             aBase.AddRoomAfter(middlePx, aQueue);
             aQueue.Clear();
             aQueue.Enqueue(6);
             aBase.AddRoomAfter(middlePx, aQueue);*/
 
-            testLunarian = new Lunarian(Content.Load<Texture2D>("Textures/topDownPerson_v2_0"), aBase, aBase.head);
+            //testLunarian = new Lunarian(Content.Load<Texture2D>("Textures/topDownPerson_v2_0"), aBase, aBase.head);
+
+            lunarians = new Lunarian[3];
+            bool tempInInner = false;
+            for (int i = 0; i < lunarians.Length; i++)
+            {
+                lunarians[i] = new Lunarian(Content.Load<Texture2D>("Textures/topDownPerson_v2_0"), aBase, aBase.head, tempInInner);
+                tempInInner = !tempInInner;
+                System.Threading.Thread.Sleep(100);
+            }
         }
 
         protected override void UnloadContent()
@@ -96,11 +106,12 @@ namespace LunarSim
                 {
                     currState = GameState.MainMenu;
                 }
-                testLunarian.Update(gameTime, GraphicsDevice.Viewport);
 
-                if (ks.IsKeyDown(Keys.A) && prevKs.IsKeyUp(Keys.A))
+                //testLunarian.Update(gameTime, GraphicsDevice.Viewport);
+
+                for (int i = 0; i < lunarians.Length; i++)
                 {
-                    currState = GameState.MainMenu;
+                    lunarians[i].Update(gameTime, GraphicsDevice.Viewport);
                 }
             }
 
@@ -125,7 +136,12 @@ namespace LunarSim
                 //middlePx.Draw(spriteBatch);
                 circularRoom.Draw(spriteBatch);
 
-                testLunarian.Draw(spriteBatch);
+                //testLunarian.Draw(spriteBatch);
+
+                for (int i = 0; i < lunarians.Length; i++)
+                {
+                    lunarians[i].Draw(spriteBatch);
+                }
 
                 aBase.Draw(spriteBatch);
             }
