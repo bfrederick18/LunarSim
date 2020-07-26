@@ -72,7 +72,6 @@ namespace LunarSim
                         pY = (float)(Math.Sin(tRadian) * (currRoom.innerRadius) * rand.NextDouble());
                     }
                     
-                    
                     p = new Vector2(pX, pY);
                     Vector2 r = -oldP + p;
 
@@ -101,6 +100,79 @@ namespace LunarSim
                     lastWander = DateTime.Now;
                     untilWander = new TimeSpan(0, 0, 0, (int)(rand.NextDouble() * 2), (int)(rand.NextDouble() * 1000));
                     inInner = !inInner;
+                    state = LunarianState.Idle;
+                    velocityCount = 0;
+                }
+            }
+
+            if(state == LunarianState.Idle && inInner)
+            {
+                if (DateTime.Now - lastWalk >= untilWalk)
+                {
+                    int[] tempMidpoint = new int[currRoom.howManyAdj];
+                    int howManySoFar = 0;
+
+                    for (int i = 0; i < currRoom.adjRoomsMidpoints.Length; i++)
+                    {
+                        if (currRoom.adjRoomsMidpoints[i] != Vector2.Zero)
+                        {
+                            tempMidpoint[howManySoFar] = i;
+                        }
+                    }
+
+                    int whichRoom = (int)(rand.NextDouble() * tempMidpoint.Length);
+
+                    destination = currRoom.adjRoomsMidpoints[tempMidpoint[whichRoom]];
+
+                    Vector2 r = -destination + position;
+
+                    rotation = (float)(Math.Atan2(r.Y, r.X) - (Math.PI / 2));
+
+                    velocity = new Vector2((position.X - destination.X), (position.Y - destination.Y));
+                    velocity *= -VELOCITY_MULTI;
+
+                    currRoom = currRoom.adjRooms[tempMidpoint[whichRoom]];
+                    state = LunarianState.WalkingOne;
+                }
+            }
+            if (state == LunarianState.WalkingOne)
+            {
+                velocityCount++;
+                if (velocityCount > 1 / VELOCITY_MULTI)
+                {
+                    oldP = p;
+                    double tRadian = (rand.NextDouble() * 2 * Math.PI);
+                    //rotation = (float)(tRadian - (Math.PI / 2));
+
+                    float pX = (float)(Math.Cos(tRadian) * (currRoom.innerRadius) * rand.NextDouble());
+                    float pY = (float)(Math.Sin(tRadian) * (currRoom.innerRadius) * rand.NextDouble());
+
+                    p = new Vector2(pX, pY);
+                    destination = currRoom.sprite.position - p;
+                    
+                    Vector2 r = -destination + position;
+
+                    rotation = (float)(Math.Atan2(r.Y, r.X) - (Math.PI / 2));
+
+                    
+
+                    velocity = new Vector2((position.X - destination.X), (position.Y - destination.Y));// rotation > Math.PI ? new Vector2(-(position.X - destination.Y), -(position.Y - destination.Y)) : new Vector2((position.X - destination.Y), -(position.Y - destination.Y));
+                    velocity *= -VELOCITY_MULTI;
+
+                    state = LunarianState.WalkingTwo;
+                    velocityCount = 0;
+                }
+            }
+            if (state == LunarianState.WalkingTwo)
+            {
+                velocityCount++;
+                if (velocityCount > 1 / VELOCITY_MULTI)
+                {
+                    Vector2 debugVelocity = velocity;
+                    velocity = Vector2.Zero;
+                    position = destination;
+                    lastWalk = DateTime.Now;
+                    //untilWalk = new TimeSpan(0, 0, 0, (int)(rand.NextDouble() * 2), (int)(rand.NextDouble() * 1000));
                     state = LunarianState.Idle;
                     velocityCount = 0;
                 }

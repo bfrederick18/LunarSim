@@ -17,6 +17,7 @@ namespace LunarSim
     {
         Idle,
         Wandering,
-        Walking
+        WalkingOne,
+        WalkingTwo
     }
 }

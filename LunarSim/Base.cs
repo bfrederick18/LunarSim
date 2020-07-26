@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework.Graphics;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,11 +25,12 @@ namespace LunarSim
         public Base(BaseSprite sprite)
         {
             RoomNode[] tempRoomArray = new RoomNode[12];
-            head = new RoomNode(sprite, tempRoomArray);
+            Vector2[] tempRoomMidpointArray = new Vector2[12];
+            head = new RoomNode(sprite, tempRoomArray, tempRoomMidpointArray);
             count = 1;
         }
 
-        public void AddRoomAfter(BaseSprite sprite, Queue<int> index)
+        public void AddRoomAfter(BaseSprite sprite, Queue<int> index, Vector2 midpoint)
         {
             RoomNode tempNode = head;
             while (index.Count > 1)
@@ -41,9 +43,14 @@ namespace LunarSim
 
             RoomNode[] tempRoomArray = new RoomNode[12];
             tempRoomArray[indexSuppliment] = tempNode;
+            Vector2[] tempRoomMidpointArray = new Vector2[12];
+            tempRoomMidpointArray[indexSuppliment] = midpoint == Vector2.Zero ? (sprite.position + tempNode.sprite.position) / 2 : midpoint;
 
-            RoomNode newNode = new RoomNode(sprite, tempRoomArray);
+            RoomNode newNode = new RoomNode(sprite, tempRoomArray, tempRoomMidpointArray);
+            newNode.howManyAdj++;
             tempNode.adjRooms[index.Peek()] = newNode;
+            tempNode.adjRoomsMidpoints[index.Peek()] = (sprite.position + tempNode.sprite.position) / 2;
+            tempNode.howManyAdj++;
 
             count++;
         }

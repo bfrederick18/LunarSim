@@ -30,24 +30,32 @@ namespace LunarSim
             get;
             set;
         }
-        private bool drawn;
+        public Vector2[] adjRoomsMidpoints
+        {
+            get;
+            set;
+        }
+        public int howManyAdj;
+        private int drawn;
 
-        public RoomNode(BaseSprite sprite, RoomNode[] adjRooms = null)
+        public RoomNode(BaseSprite sprite, RoomNode[] adjRooms = null, Vector2[] adjRoomsMidpoints = null)
         {
             this.sprite = sprite;
             innerRadius = sprite.texture.Width * sprite.scale.X > sprite.texture.Height * sprite.scale.Y ? sprite.texture.Height * sprite.scale.Y / 4 : sprite.texture.Width * sprite.scale.X / 4;
-            outerRadius = new Vector2(sprite.texture.Width * sprite.scale.X / 3, sprite.texture.Height * sprite.scale.Y / 3);
+            outerRadius = new Vector2(sprite.texture.Width * sprite.scale.X / 2 - 10, sprite.texture.Height * sprite.scale.Y / 2 - 10);
             this.adjRooms = adjRooms;
-            drawn = false;
+            this.adjRoomsMidpoints = adjRoomsMidpoints;
+            howManyAdj = 0;
+            drawn = 0;
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
             sprite.Draw(spriteBatch);
-            drawn = true;
+            drawn++;
             foreach (var e in adjRooms)
             {
-                if (e != null && e.drawn == false)
+                if (e != null && e.drawn < drawn)
                 {
                     e.Draw(spriteBatch);
                 }

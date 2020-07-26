@@ -29,5 +29,10 @@ namespace LunarSim
             position += velocity;
             base.Update(gameTime, screen);
         }
+
+        public override void Draw(SpriteBatch spriteBatch)
+        {
+            base.Draw(spriteBatch);
+        }
     }
 }

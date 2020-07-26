@@ -54,22 +54,19 @@ namespace LunarSim
 
             middlePx = new BaseSprite(pixel, centerScreen, Color.Green, Vector2.One);
             
-            circularRoom = new BaseSprite(Content.Load<Texture2D>("Textures/circularBase_v1_4"), centerScreen, Color.White, new Vector2(1f, 1f));
+            circularRoom = new BaseSprite(Content.Load<Texture2D>("Textures/circularBase_v1_4"), centerScreen, Color.White, new Vector2(0.75f, 0.75f));
 
             aBase = new Base(circularRoom);
 
             Queue<int> aQueue = new Queue<int>();
             aQueue.Enqueue(6);
-            aBase.AddRoomAfter(circularRoom, aQueue);
-            /*aQueue.Enqueue(3);
-            aBase.AddRoomAfter(middlePx, aQueue);
-            aQueue.Clear();
-            aQueue.Enqueue(6);
-            aBase.AddRoomAfter(middlePx, aQueue);*/
+            aBase.AddRoomAfter(new BaseSprite(Content.Load<Texture2D>("Textures/circularBase_v1_4"), centerScreen + new Vector2(0, 200), Color.White, new Vector2(0.5f, 0.5f)), aQueue, Vector2.Zero);
+            aQueue.Enqueue(3);
+            aBase.AddRoomAfter(new BaseSprite(Content.Load<Texture2D>("Textures/circularBase_v1_4"), centerScreen + new Vector2(0, 200) + new Vector2(200, 0), Color.White, new Vector2(1f, 1f)), aQueue, Vector2.Zero);
 
             //testLunarian = new Lunarian(Content.Load<Texture2D>("Textures/topDownPerson_v2_0"), aBase, aBase.head);
 
-            lunarians = new Lunarian[3];
+            lunarians = new Lunarian[1];
             bool tempInInner = false;
             for (int i = 0; i < lunarians.Length; i++)
             {
@@ -134,13 +131,14 @@ namespace LunarSim
             if (currState == GameState.Simulation)
             {
                 //middlePx.Draw(spriteBatch);
-                circularRoom.Draw(spriteBatch);
+                //circularRoom.Draw(spriteBatch);
 
                 //testLunarian.Draw(spriteBatch);
 
                 for (int i = 0; i < lunarians.Length; i++)
                 {
                     lunarians[i].Draw(spriteBatch);
+                    aBase.Draw(spriteBatch);
                 }
 
                 aBase.Draw(spriteBatch);
