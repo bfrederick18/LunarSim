@@ -27,6 +27,8 @@ namespace LunarSim
         private float VELOCITY_MULTI;
         private Vector2 p;
         private Vector2 oldP;
+        private bool covid;
+        private bool immune;
 
         public Lunarian(Texture2D texture, Base aBase, RoomNode startingRoom, bool inInner)
            : base(texture, startingRoom.sprite.position, new Rectangle(0, 0, texture.Width, texture.Height), Color.White, 0.0f, new Vector2(texture.Width / 2, texture.Height / 2), new Vector2(0.5f, 0.5f), SpriteEffects.None, 0, 1.0f, Vector2.Zero)
@@ -43,9 +45,20 @@ namespace LunarSim
 
             this.inInner = inInner;
             velocityCount = 0;
-            VELOCITY_MULTI = 0.01f;
+            VELOCITY_MULTI = 0.02f;
             p = Vector2.Zero;
             oldP = Vector2.Zero;
+            covid = false;
+        }
+
+        public bool HasCovid()
+        {
+            return covid;
+        }
+        public void GiveCovid()
+        {
+            covid = true;
+            tint = Color.Yellow;
         }
 
         public override void Update(GameTime gameTime, Viewport screen)

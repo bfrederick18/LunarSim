@@ -23,7 +23,7 @@ namespace LunarSim
         protected float layerDepth;
         protected Vector2 origin;
         protected SpriteEffects effects;
-        protected Rectangle hitBox;
+        public Rectangle hitBox;
         #endregion
 
         public float transparency;
@@ -42,6 +42,12 @@ namespace LunarSim
         {
             this.tint = tint;
             this.scale = scale;
+        }
+
+        public BaseSprite(Texture2D texture, Vector2 position, float rotation, Vector2 scale)
+            : this(texture, position, new Rectangle(0, 0, texture.Width, texture.Height), Color.White, rotation, Vector2.Zero, scale, SpriteEffects.None, 0, 1.0f)
+        {
+            origin = new Vector2(sourceRectangle.Width / 2, sourceRectangle.Height / 2);
         }
 
         public BaseSprite(Texture2D texture, Vector2 position, Rectangle sourceRectangle, Color tint, float rotation, Vector2 origin, Vector2 scale, SpriteEffects effects, float layerDepth, float transparency)
