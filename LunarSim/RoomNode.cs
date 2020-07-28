@@ -36,9 +36,10 @@ namespace LunarSim
             set;
         }
         public int howManyAdj;
+        public TimeSpan untilWalk;
         private int drawn;
 
-        public RoomNode(BaseSprite sprite, RoomNode[] adjRooms = null, Vector2[] adjRoomsMidpoints = null)
+        public RoomNode(BaseSprite sprite, TimeSpan untilWalk, RoomNode[] adjRooms = null, Vector2[] adjRoomsMidpoints = null)
         {
             this.sprite = sprite;
             innerRadius = sprite.texture.Width * sprite.scale.X > sprite.texture.Height * sprite.scale.Y ? sprite.texture.Height * sprite.scale.Y / 4 : sprite.texture.Width * sprite.scale.X / 4;
@@ -46,6 +47,8 @@ namespace LunarSim
             this.adjRooms = adjRooms;
             this.adjRoomsMidpoints = adjRoomsMidpoints;
             howManyAdj = 0;
+            this.untilWalk = untilWalk;
+
             drawn = 0;
         }
 

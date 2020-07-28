@@ -22,15 +22,15 @@ namespace LunarSim
             private set;
         }
 
-        public Base(BaseSprite sprite)
+        public Base(BaseSprite sprite, TimeSpan untilWalk)
         {
             RoomNode[] tempRoomArray = new RoomNode[12];
             Vector2[] tempRoomMidpointArray = new Vector2[12];
-            head = new RoomNode(sprite, tempRoomArray, tempRoomMidpointArray);
+            head = new RoomNode(sprite, untilWalk, tempRoomArray, tempRoomMidpointArray);
             count = 1;
         }
 
-        public void AddRoomAfter(BaseSprite sprite, Queue<int> index, Vector2 midpoint)
+        public void AddRoomAfter(BaseSprite sprite, Queue<int> index, Vector2 midpoint, TimeSpan untilWalk)
         {
             RoomNode tempNode = head;
             while (index.Count > 1)
@@ -44,12 +44,12 @@ namespace LunarSim
             RoomNode[] tempRoomArray = new RoomNode[12];
             tempRoomArray[indexSuppliment] = tempNode;
             Vector2[] tempRoomMidpointArray = new Vector2[12];
-            tempRoomMidpointArray[indexSuppliment] = midpoint == Vector2.Zero ? (sprite.position + tempNode.sprite.position) / 2 : midpoint;
+            tempRoomMidpointArray[indexSuppliment] = midpoint == Vector2.Zero ? (sprite.position + tempNode.sprite.position) / 2f : midpoint;
 
-            RoomNode newNode = new RoomNode(sprite, tempRoomArray, tempRoomMidpointArray);
+            RoomNode newNode = new RoomNode(sprite, untilWalk, tempRoomArray, tempRoomMidpointArray);
             newNode.howManyAdj++;
             tempNode.adjRooms[index.Peek()] = newNode;
-            tempNode.adjRoomsMidpoints[index.Peek()] = (sprite.position + tempNode.sprite.position) / 2;
+            tempNode.adjRoomsMidpoints[index.Peek()] = midpoint == Vector2.Zero ? (sprite.position + tempNode.sprite.position) / 2f : midpoint;
             tempNode.howManyAdj++;
 
             count++;

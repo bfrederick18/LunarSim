@@ -4,11 +4,16 @@
   <Platform>Windows</Platform>
   <Config />
   <SourceFiles>
+    <File>C:/Users/Brandon/Documents/Github/LunarSim/LunarSim/Content/Textures/blank_v1_0.png</File>
     <File>C:/Users/Brandon/Documents/Github/LunarSim/LunarSim/Content/Textures/circularBase_v1_0.png</File>
     <File>C:/Users/Brandon/Documents/Github/LunarSim/LunarSim/Content/Textures/circularBase_v1_1.png</File>
     <File>C:/Users/Brandon/Documents/Github/LunarSim/LunarSim/Content/Textures/circularBase_v1_2.png</File>
     <File>C:/Users/Brandon/Documents/Github/LunarSim/LunarSim/Content/Textures/circularBase_v1_3.png</File>
     <File>C:/Users/Brandon/Documents/Github/LunarSim/LunarSim/Content/Textures/circularBase_v1_4.png</File>
+    <File>C:/Users/Brandon/Documents/Github/LunarSim/LunarSim/Content/Textures/circularBase_v2_0.png</File>
+    <File>C:/Users/Brandon/Documents/Github/LunarSim/LunarSim/Content/Textures/oblong_v2_0.png</File>
+    <File>C:/Users/Brandon/Documents/Github/LunarSim/LunarSim/Content/Textures/square_v1_0.png</File>
+    <File>C:/Users/Brandon/Documents/Github/LunarSim/LunarSim/Content/Textures/square_v2_0.png</File>
     <File>C:/Users/Brandon/Documents/Github/LunarSim/LunarSim/Content/Textures/topDownPerson_v1_1.png</File>
     <File>C:/Users/Brandon/Documents/Github/LunarSim/LunarSim/Content/Textures/topDownPerson_v1_2.png</File>
     <File>C:/Users/Brandon/Documents/Github/LunarSim/LunarSim/Content/Textures/topDownPerson_v2_0.png</File>
@@ -16,6 +21,11 @@
     <File>C:/Users/Brandon/Documents/Github/LunarSim/LunarSim/Content/Textures/white3By3.png</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />

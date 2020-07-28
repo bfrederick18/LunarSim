@@ -17,12 +17,11 @@ namespace LunarSim
     {
         public LunarianState state;
         public DateTime lastWalk;
-        public TimeSpan untilWalk;
         public DateTime lastWander;
         public TimeSpan untilWander;
         public Vector2 destination;
         public Base aBase;
-        public RoomNode currRoom;
+        private RoomNode currRoom;
         private bool inInner;
         private int velocityCount;
         private float VELOCITY_MULTI;
@@ -37,7 +36,6 @@ namespace LunarSim
             rotation = (float)(rand.NextDouble() * 2 * Math.PI);
             state = LunarianState.Idle;
             lastWalk = DateTime.Now;
-            untilWalk = new TimeSpan(0, 0, 0, 11);
             lastWander = DateTime.Now;
             untilWander = new TimeSpan(0, 0, 0, 1);
             this.aBase = aBase;
@@ -84,7 +82,7 @@ namespace LunarSim
 
                     state = LunarianState.Wandering;
                 }
-                if (DateTime.Now - lastWalk >= untilWalk)
+                if (DateTime.Now - lastWalk >= currRoom.untilWalk)
                 {
                     //state = LunarianState.Walking;
                 }
@@ -107,7 +105,7 @@ namespace LunarSim
 
             if(state == LunarianState.Idle && inInner)
             {
-                if (DateTime.Now - lastWalk >= untilWalk)
+                if (DateTime.Now - lastWalk >= currRoom.untilWalk)
                 {
                     int[] tempMidpoint = new int[currRoom.howManyAdj];
                     int howManySoFar = 0;
@@ -117,10 +115,11 @@ namespace LunarSim
                         if (currRoom.adjRoomsMidpoints[i] != Vector2.Zero)
                         {
                             tempMidpoint[howManySoFar] = i;
+                            howManySoFar++;
                         }
                     }
 
-                    int whichRoom = (int)(rand.NextDouble() * tempMidpoint.Length);
+                    int whichRoom = (int)(rand.NextDouble() * (tempMidpoint.Length));
 
                     destination = currRoom.adjRoomsMidpoints[tempMidpoint[whichRoom]];
 
@@ -132,6 +131,10 @@ namespace LunarSim
                     velocity *= -VELOCITY_MULTI;
 
                     currRoom = currRoom.adjRooms[tempMidpoint[whichRoom]];
+                    if (currRoom == null)
+                    {
+                        tint = Color.GreenYellow;
+                    }
                     state = LunarianState.WalkingOne;
                 }
             }
@@ -154,8 +157,6 @@ namespace LunarSim
 
                     rotation = (float)(Math.Atan2(r.Y, r.X) - (Math.PI / 2));
 
-                    
-
                     velocity = new Vector2((position.X - destination.X), (position.Y - destination.Y));// rotation > Math.PI ? new Vector2(-(position.X - destination.Y), -(position.Y - destination.Y)) : new Vector2((position.X - destination.Y), -(position.Y - destination.Y));
                     velocity *= -VELOCITY_MULTI;
 
@@ -172,7 +173,7 @@ namespace LunarSim
                     velocity = Vector2.Zero;
                     position = destination;
                     lastWalk = DateTime.Now;
-                    //untilWalk = new TimeSpan(0, 0, 0, (int)(rand.NextDouble() * 2), (int)(rand.NextDouble() * 1000));
+                    lastWander = DateTime.Now;
                     state = LunarianState.Idle;
                     velocityCount = 0;
                 }

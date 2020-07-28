@@ -31,3 +31,8 @@ C:\Users\Brandon\Documents\Github\LunarSim\LunarSim\bin\Windows\x86\Debug\Conten
 C:\Users\Brandon\Documents\Github\LunarSim\LunarSim\bin\Windows\x86\Debug\Content\Textures\circularBase_v1_2.xnb
 C:\Users\Brandon\Documents\Github\LunarSim\LunarSim\bin\Windows\x86\Debug\Content\Textures\circularBase_v1_3.xnb
 C:\Users\Brandon\Documents\Github\LunarSim\LunarSim\bin\Windows\x86\Debug\Content\Textures\circularBase_v1_4.xnb
+C:\Users\Brandon\Documents\Github\LunarSim\LunarSim\bin\Windows\x86\Debug\Content\Textures\square_v1_0.xnb
+C:\Users\Brandon\Documents\Github\LunarSim\LunarSim\bin\Windows\x86\Debug\Content\Textures\circularBase_v2_0.xnb
+C:\Users\Brandon\Documents\Github\LunarSim\LunarSim\bin\Windows\x86\Debug\Content\Textures\blank_v1_0.xnb
+C:\Users\Brandon\Documents\Github\LunarSim\LunarSim\bin\Windows\x86\Debug\Content\Textures\oblong_v2_0.xnb
+C:\Users\Brandon\Documents\Github\LunarSim\LunarSim\bin\Windows\x86\Debug\Content\Textures\square_v2_0.xnb
