@@ -28,7 +28,6 @@ namespace LunarSim
         private Vector2 p;
         private Vector2 oldP;
         private bool covid;
-        private bool immune;
 
         public Lunarian(Texture2D texture, Base aBase, RoomNode startingRoom, bool inInner)
            : base(texture, startingRoom.sprite.position, new Rectangle(0, 0, texture.Width, texture.Height), Color.White, 0.0f, new Vector2(texture.Width / 2, texture.Height / 2), new Vector2(0.5f, 0.5f), SpriteEffects.None, 0, 1.0f, Vector2.Zero)
@@ -55,14 +54,24 @@ namespace LunarSim
         {
             return covid;
         }
+        public void ChanceGiveCovid()
+        {
+            int tempChance = (int)(rand.NextDouble() * 100);
+            if (tempChance == 1)
+            {
+                covid = true;
+            }
+        }
         public void GiveCovid()
         {
             covid = true;
-            tint = Color.Yellow;
         }
 
         public override void Update(GameTime gameTime, Viewport screen)
         {
+            if (covid)
+                tint = Color.Yellow;
+
             if (state == LunarianState.Idle)
             {
                 if (DateTime.Now - lastWander >= untilWander)

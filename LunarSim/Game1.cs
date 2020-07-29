@@ -188,7 +188,7 @@ namespace LunarSim
                 new BaseSprite(blank, centerBase + new Vector2((float)(Math.Cos(Math.PI) * howFarFromMain * 0.5f), (float)(-Math.Sin(Math.PI) * howFarFromMain * 0.5f)), (float)Math.PI, new Vector2(0.11f, 0.11f))
             };
 
-            lunarians = new Lunarian[20];
+            lunarians = new Lunarian[10];
             bool tempInInner = false;
             RoomNode[] allRooms = new RoomNode[]
             { 
@@ -256,10 +256,9 @@ namespace LunarSim
                             continue;
                         else
                         {
-                            if (lunarians[j].HasCovid() && lunarians[j].hitBox.Intersects(lunarians[i].hitBox))
+                            if (lunarians[j].HasCovid() && lunarians[j].hitBox.Intersects(lunarians[i].hitBox) && !lunarians[i].HasCovid())
                             {
-                                lunarians[i].GiveCovid();
-                                break;
+                                lunarians[i].ChanceGiveCovid();
                             }
                         }
                     }
